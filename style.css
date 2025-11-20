@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=JetBrains+Mono:wght@500&display=swap');
+
+/* --- 1. ANIMATED BACKGROUND OVERLAY --- */
+#sg-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  /* Frosted Glass Background over Instagram */
+  background: rgba(5, 5, 5, 0.85); 
+  backdrop-filter: blur(15px); /* The "Premium" Blur Effect */
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 2147483647;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  font-family: 'Outfit', sans-serif; color: rgb(28, 26, 26);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* --- 2. THE MAIN CARD (Compact & Modern) --- */
+.sg-card {
+  background: linear-gradient(160deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%; max-width: 550px; /* Compact Width for Laptop Screens */
+  padding: 40px;
+  border-radius: 24px; text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  animation: slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Neon Top Border */
+.sg-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+  background: linear-gradient(90deg, #4cc9f0, #4361ee, #f72585);
+}
+
+.sg-card.wide { max-width: 900px; } /* Wider for Video */
+
+/* --- 3. TYPOGRAPHY (MODIFIED FOR LARGER, CONSISTENT TEXT) --- */
+h1 { 
+  font-size: 3.2rem; /* INCREASED for prominence */
+  font-weight: 800; 
+  margin-bottom: 15px; /* INCREASED margin */
+  /* Gradient Text remains */
+  background: linear-gradient(to right, #030303, #4cc9f0);
+  background-clip: text; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  letter-spacing: -1px;
+}
+
+h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: #151313; }
+h3 { font-size: 1.5rem; margin-bottom: 20px; color: #0b0a0a; }
+p, .sub-text { 
+  font-size: 1.2rem; /* UNIFIED size for all main text */
+  color: #ffffff; /* Fixed for visibility */
+  margin-bottom: 40px; /* INCREASED bottom margin */
+  line-height: 1.5; font-weight: 300; 
+}
+
+.question-text { font-size: 1.4rem; font-weight: 600; margin-bottom: 25px; line-height: 1.4; color: #fff; }
+.code-font { font-family: 'JetBrains Mono', monospace; color: #4cc9f0; background: rgba(76, 201, 240, 0.1); padding: 0 6px; border-radius: 4px; }
+
+/* --- 4. LOGIN PAGE STYLING (MODIFIED FOR PROMINENT WHITE INPUTS AND OPTIMIZED WIDTH) --- */
+.logo-wrapper { margin-bottom: 20px; }
+.logo-icon { 
+    font-size: 3.5rem; 
+    filter: drop-shadow(0 0 20px rgba(76, 201, 240, 0.6));
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.input-wrapper { 
+    position: relative; 
+    margin-bottom: 20px; 
+    text-align: left; 
+    /* 🔑 FIX: OPTIMIZED WIDTH - This sets the container width */
+    max-width: 400px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+.input-icon { 
+    position: absolute; left: 18px; 
+    top: 50%; transform: translateY(-50%); 
+    font-size: 1.4rem; 
+    z-index: 2; color: #555; 
+}
+
+input, select {
+  background: #ffffff; /* Solid White Background */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* 🔑 FINAL FIX: BOX SIZING FOR UNIFORM WIDTH */
+  box-sizing: border-box !important; 
+  -webkit-appearance: none; /* Strip default styling for uniform sizing */
+  -moz-appearance: none; 
+  appearance: none; 
+  /* 🔑 FIX: FORCED DARK TEXT */
+  color: #111111 !important; 
+  /* 🔑 FIX: UNIFIED BAR SIZE (Applied to both input and select) */
+  padding: 20px; 
+  width: 100%; 
+  border-radius: 14px; 
+  /* 🔑 FIX: UNIFIED FONT SIZE */
+  font-size: 1.3rem; 
+  padding-left: 65px; /* Fixed: Increased padding to 65px for icon space */
+  transition: all 0.3s ease; font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Dropdown Arrow for Select box */
+.input-wrapper:has(select)::after {
+  content: "▼"; /* Unicode Down Arrow */
+  position: absolute;
+  right: 18px; 
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  pointer-events: none; /* Allows clicking the select underneath */
+  font-size: 0.8rem;
+  z-index: 2;
+}
+
+/* Ensure the selected option in the dropdown is also dark */
+select option {
+    background: #ffffff;
+    color: #111111;
+}
+
+input:focus, select:focus { 
+  border-color: #4cc9f0; 
+  background: #f0f9ff; 
+  outline: none; 
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.2);
+}
+
+/* Placeholder styling: MADE DARKER for visibility */
+input::placeholder {
+  color: #444; 
+}
+
+/* --- 5. BUTTONS (Vibrant & Interactive) --- */
+.btn-grid { display: grid; gap: 15px; grid-template-columns: 1fr 1fr; }
+.action-grid { display: flex; flex-direction: column; gap: 15px; }
+
+.sg-btn {
+  padding: 18px 24px; 
+  border-radius: 12px; border: none;
+  font-size: 1.3rem; 
+  font-weight: 800; cursor: pointer;
+  transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px;
+  width: 100%;
+}
+
+/* Primary: Electric Gradient (More vibrant for hackathon feel) */
+.sg-btn.primary {
+  background: linear-gradient(135deg, #4361ee, #00b3ff); 
+  color: white;
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6); 
+}
+.sg-btn.primary:hover { 
+  transform: translateY(-4px); 
+  box-shadow: 0 12px 35px rgba(67, 97, 238, 0.8); 
+}
+
+/* Secondary: Pink Outline */
+.sg-btn.secondary {
+  background: transparent; border: 2px solid #f72585; color: #f72585;
+}
+.sg-btn.secondary:hover { 
+  background: rgba(247, 37, 133, 0.1); 
+  box-shadow: 0 0 15px rgba(247, 37, 133, 0.3);
+  transform: translateY(-3px);
+}
+
+/* --- 6. QUIZ OPTIONS --- */
+.options-grid { display: grid; gap: 15px; grid-template-columns: 1fr 1fr; }
+.opt-btn {
+  background: rgba(255, 255, 255, 0.05); 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  color: #ffffff; /* **FIXED: Changed to white for visibility** */
+  padding: 18px; text-align: left; border-radius: 12px; 
+  cursor: pointer; font-size: 1.1rem; font-weight: 500; transition: all 0.2s;
+}
+.opt-btn:hover { 
+  background: rgba(67, 97, 238, 0.2); border-color: #4cc9f0; color: white; 
+  transform: scale(1.02);
+}
+
+/* --- 7. DASHBOARD STATS --- */
+.stats-row { display: flex; gap: 15px; margin-bottom: 25px; }
+.stat-card {
+  background: rgba(255, 255, 255, 0.05); flex: 1; padding: 20px; 
+  border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 5px; display: block; }
+.stat-value { font-size: 2rem; font-weight: 800; color: white; }
+
+/* --- 8. TIME LOG --- */
+.time-log {
+  background: #000; border-radius: 12px; padding: 15px; margin-bottom: 20px;
+  max-height: 120px; overflow-y: auto; border: 1px solid #333; text-align: left;
+}
+.time-log h4 { margin: 0 0 10px 0; font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+.time-log ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.time-log li { 
+  display: flex; justify-content: space-between; 
+  background: #1a1a1a; padding: 10px 12px; border-radius: 6px; 
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #ccc;
+}
+
+/* --- 9. FLOATING TIMER (Bottom Right) --- */
+#sg-timer {
+  position: fixed; bottom: 30px; right: 30px;
+  background: rgba(0, 0, 0, 0.95); border: 3px solid #e1306c;
+  padding: 15px 30px; border-radius: 50px; z-index: 2147483646;
+  display: flex; align-items: center; gap: 15px;
+  box-shadow: 0 10px 30px rgba(247, 37, 133, 0.5);
+  animation: slideUp 0.5s ease-out;
+}
+.reel-count { font-size: 1.5rem; font-weight: 800; color: #fff; font-family: 'Outfit', sans-serif; }
+.reel-label { font-size: 0.9rem; color: #f72585; font-weight: 700; text-transform: uppercase; margin-left: 5px; }
+#sg-exit-btn { /* FIXED ID */
+    background: #222; border: 1px solid #444; color: white;
+    padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;
+    font-size: 0.8rem; transition: 0.2s; text-transform: uppercase;
+}
+#sg-exit-btn:hover { background: #f72585; border-color: #f72585; } /* FIXED ID */
+
+/* --- 10. VIDEO WRAPPER --- */
+.video-wrapper {
+  position: relative; padding-bottom: 56.25%; height: 0; 
+  overflow: hidden; border-radius: 16px; border: 2px solid #333;
+  margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+}
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* --- 11. ANIMATIONS --- */
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); } 100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); } }
+
+/* --- 12. PROGRESS BAR --- */
+.progress-container {
+    position: absolute; top: 0; left: 0; width: 100%;
+}
+.progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); }
+.fill { height: 100%; background: linear-gradient(90deg, #4cc9f0, #f72585); transition: width 0.5s; }
+.progress-text { 
+    position: absolute; top: 15px; right: 20px; 
+    color: #666; font-size: 0.8rem; font-weight: 600; 
+}

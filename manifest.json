@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "ScrollGuard: The Social LMS",
+  "version": "2.0",
+  "description": "Turn Instagram scrolling into Python learning.",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["db_data.js", "content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
